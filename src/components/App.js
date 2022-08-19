@@ -5,6 +5,7 @@ import dataTasks from "../data/tasks.json";
 function App() {
   const [data, setData] = useState(dataTasks);
   const [searchFilter, setSearchFilter] = useState("");
+  const [searchSelect, setSearchSelect] = useState("");
   const [newQuote, setNewQuote] = useState({
     quote: "",
     character: "",
@@ -13,10 +14,20 @@ function App() {
   const filteredData = data.filter((dataItem) =>
     dataItem.quote.toLowerCase().includes(searchFilter.toLowerCase())
   );
-
   const handleFilter = (ev) => {
     setSearchFilter(ev.currentTarget.value);
   };
+  /////////////////////////////7
+
+  const filteredSelect = data.filter((dataItem) =>
+    dataItem.character.toLowerCase().includes(searchSelect.toLowerCase())
+  );
+  const handleSelect = (ev) => {
+    setSearchSelect(ev.currentTarget.value);
+  };
+
+  /////////////////////////////////
+
   ///////////////////////
   const handleAddButton = (ev) => {
     ev.preventDefault();
@@ -28,6 +39,9 @@ function App() {
     const inputValue = ev.target.value;
     setNewQuote({ ...newQuote, [inputId]: inputValue });
   };
+
+  ////////////////////////////////
+
   /////////////////////////////////
   const htmlLi = filteredData.map((dataItem, id) => {
     return (
@@ -47,7 +61,7 @@ function App() {
           filtrar por frase
           <input type="text" onChange={handleFilter} value={searchFilter} />
           filtrar por personaje
-          <select>
+          <select onChange={handleSelect} value={filteredSelect}>
             <option>Todos</option>
             <option>Ross</option>
             <option>Monica</option>
