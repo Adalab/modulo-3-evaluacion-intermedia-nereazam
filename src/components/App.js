@@ -1,6 +1,7 @@
 import "../styles/App.scss";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import dataTasks from "../data/tasks.json";
+//import callToApi from "../services/api";
 
 function App() {
   const [data, setData] = useState(dataTasks);
@@ -11,17 +12,27 @@ function App() {
     character: "",
   });
   ////////////////////
-  const filteredData = data.filter((dataItem) =>
-    dataItem.quote.toLowerCase().includes(searchFilter.toLowerCase())
-  );
+  // Llamar a la api con useEffect
+
+  /*useEffect(() => {
+    callToApi().then((response) => {
+     setData(response);
+    });
+  }, []);*/
+  ////////////////////
+
+  const filteredData = data
+    .filter((dataItem) =>
+      dataItem.quote.toLowerCase().includes(searchFilter.toLowerCase())
+    )
+    .filter((dataItem) =>
+      dataItem.character.toLowerCase().includes(searchSelect.toLowerCase())
+    );
   const handleFilter = (ev) => {
     setSearchFilter(ev.currentTarget.value);
   };
   /////////////////////////////7
 
-  const filteredSelect = data.filter((dataItem) =>
-    dataItem.character.toLowerCase().includes(searchSelect.toLowerCase())
-  );
   const handleSelect = (ev) => {
     setSearchSelect(ev.currentTarget.value);
   };
@@ -61,7 +72,7 @@ function App() {
           filtrar por frase
           <input type="text" onChange={handleFilter} value={searchFilter} />
           filtrar por personaje
-          <select onChange={handleSelect} value={filteredSelect}>
+          <select onChange={handleSelect} value={searchSelect}>
             <option>Todos</option>
             <option>Ross</option>
             <option>Monica</option>
