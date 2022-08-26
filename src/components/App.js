@@ -25,8 +25,23 @@ function App() {
     .filter((dataItem) =>
       dataItem.quote.toLowerCase().includes(searchFilter.toLowerCase())
     )
-    .filter((dataItem) =>
-      dataItem.character.toLowerCase().includes(searchSelect.toLowerCase())
+    .filter(
+      (dataItem) => {
+        if (searchSelect === "all") {
+          return true;
+        }
+        return dataItem.character === searchSelect;
+      }
+      //dataItem.character.toLowerCase().includes(searchSelect.toLowerCase())
+    );
+
+  ////////////////////////////////
+  const htmlLi = filteredData.map((dataItem, id) => {
+    return (
+      <li key={id}>
+        <h3>{dataItem.quote}</h3>
+        <span>{dataItem.character}</span>
+      </li>
     );
   const handleFilter = (ev) => {
     setSearchFilter(ev.currentTarget.value);
@@ -50,8 +65,6 @@ function App() {
     const inputValue = ev.target.value;
     setNewQuote({ ...newQuote, [inputId]: inputValue });
   };
-
-  ////////////////////////////////
 
   /////////////////////////////////
   const htmlLi = filteredData.map((dataItem, id) => {
