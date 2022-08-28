@@ -1,60 +1,50 @@
 import "../styles/App.scss";
 import { useState, useEffect } from "react";
-import dataTasks from "../data/tasks.json";
-//import callToApi from "../services/api";
+
+import callToApi from "../services/api";
 
 function App() {
-  const [data, setData] = useState(dataTasks);
+  const [data, setData] = useState();
   const [searchFilter, setSearchFilter] = useState("");
-  const [searchSelect, setSearchSelect] = useState("");
+  const [searchSelect, setSearchSelect] = useState("all");
   const [newQuote, setNewQuote] = useState({
     quote: "",
     character: "",
   });
-  ////////////////////
-  // Llamar a la api con useEffect
 
-  /*useEffect(() => {
+  useEffect(() => {
     callToApi().then((response) => {
-     setData(response);
+      setData(response);
     });
-  }, []);*/
-  ////////////////////
+  }, []);
 
   const filteredData = data
-    .filter((dataItem) =>
-      dataItem.quote.toLowerCase().includes(searchFilter.toLowerCase())
-    )
-    .filter(
-      (dataItem) => {
-        if (searchSelect === "all") {
-          return true;
-        }
-        return dataItem.character === searchSelect;
+    .filter((dataItem) => {
+      return dataItem.quote.toLowerCase().includes(searchFilter.toLowerCase());
+    })
+    .filter((item) => {
+      if (searchSelect === "all") {
+        return true;
       }
-      //dataItem.character.toLowerCase().includes(searchSelect.toLowerCase())
-    );
+      return item.character === searchSelect;
+    })
+    .map((dataItem, id) => {
+      return (
+        <li key={id}>
+          <h3>{dataItem.quote}</h3>
+          <span>{dataItem.character}</span>
+        </li>
+      );
+    });
 
-  ////////////////////////////////
-  const htmlLi = filteredData.map((dataItem, id) => {
-    return (
-      <li key={id}>
-        <h3>{dataItem.quote}</h3>
-        <span>{dataItem.character}</span>
-      </li>
-    );
   const handleFilter = (ev) => {
     setSearchFilter(ev.currentTarget.value);
   };
-  /////////////////////////////7
 
   const handleSelect = (ev) => {
     setSearchSelect(ev.currentTarget.value);
   };
 
-  /////////////////////////////////
-
-  ///////////////////////
   const handleAddButton = (ev) => {
     ev.preventDefault();
     setData([...data, newQuote]);
@@ -67,14 +57,6 @@ function App() {
   };
 
   /////////////////////////////////
-  const htmlLi = filteredData.map((dataItem, id) => {
-    return (
-      <li key={id}>
-        <h3>{dataItem.quote}</h3>
-        <span>{dataItem.character}</span>
-      </li>
-    );
-  });
   return (
     <div className="App">
       <header>
@@ -86,16 +68,16 @@ function App() {
           <input type="text" onChange={handleFilter} value={searchFilter} />
           filtrar por personaje
           <select onChange={handleSelect} value={searchSelect}>
-            <option>Todos</option>
-            <option>Ross</option>
-            <option>Monica</option>
-            <option>Joey</option>
-            <option>Phoebe</option>
-            <option>Chandler</option>
-            <option>Rachel</option>
+            <option value="all">Todos</option>
+            <option value="Ross">Ross</option>
+            <option value="Monica">Monica</option>
+            <option value="Joey">Joey</option>
+            <option value="Phoebe">Phoebe</option>
+            <option value="Chandler">Chandler</option>
+            <option value="Rachel">Rachel</option>
           </select>
         </form>
-        <ul>{htmlLi}</ul>
+        <ul>{filteredData}</ul>
         <form action="">
           <h2> Añadir nueva frase</h2>
           Frase
