@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import callToApi from "../services/api";
 
 function App() {
-  const [data, setData] = useState();
+  const [data, setData] = useState([]);
   const [searchFilter, setSearchFilter] = useState("");
   const [searchSelect, setSearchSelect] = useState("all");
   const [newQuote, setNewQuote] = useState({
