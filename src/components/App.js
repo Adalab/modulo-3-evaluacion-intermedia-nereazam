@@ -39,24 +39,28 @@ function App() {
     });
 
   const handleFilter = (ev) => {
-    setSearchFilter(ev.currentTarget.value);
+    setSearchFilter(ev.target.value);
   };
 
   const handleSelect = (ev) => {
-    setSearchSelect(ev.currentTarget.value);
+    setSearchSelect(ev.target.value);
   };
 
-  const handleAddButton = (ev) => {
-    ev.preventDefault();
-    setData([...data, newQuote]);
-  };
   //////////////////////////////
   const handleNewQuote = (ev) => {
-    const inputId = ev.target.id;
-    const inputValue = ev.target.value;
-    setNewQuote({ ...newQuote, [inputId]: inputValue });
+    setNewQuote({
+      ...newQuote,
+      [ev.target.id]: ev.target.value,
+    });
   };
-
+  const handleClickAdd = (ev) => {
+    ev.preventDefault();
+    setData([...data, newQuote]);
+    setNewQuote({
+      quote: "",
+      character: "",
+    });
+  };
   /////////////////////////////////
   return (
     <div className="App">
@@ -100,6 +104,7 @@ function App() {
               <input
                 type="text"
                 id="new-quote"
+                name="new-quote"
                 onChange={handleNewQuote}
                 value={newQuote.quote}
               />
@@ -108,12 +113,13 @@ function App() {
               <label for="new-character">Personaje</label>
               <input
                 type="text"
+                name="new-character"
                 id="new-character"
                 onChange={handleNewQuote}
                 value={newQuote.character}
               />
             </div>
-            <button class="add-button" onClick={handleAddButton}>
+            <button class="add-button" onClick={handleClickAdd}>
               Añadir una nueva frase
             </button>
           </form>
