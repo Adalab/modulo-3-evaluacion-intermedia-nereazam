@@ -1,4 +1,5 @@
 import "../styles/App.scss";
+
 import { useState, useEffect } from "react";
 
 import callToApi from "../services/api";
@@ -59,44 +60,66 @@ function App() {
   /////////////////////////////////
   return (
     <div className="App">
-      <header>
-        <h1>Frases de Friends</h1>
-      </header>
-      <main>
-        <form action="">
-          filtrar por frase
-          <input type="text" onChange={handleFilter} value={searchFilter} />
-          filtrar por personaje
-          <select onChange={handleSelect} value={searchSelect}>
-            <option value="all">Todos</option>
-            <option value="Ross">Ross</option>
-            <option value="Monica">Monica</option>
-            <option value="Joey">Joey</option>
-            <option value="Phoebe">Phoebe</option>
-            <option value="Chandler">Chandler</option>
-            <option value="Rachel">Rachel</option>
-          </select>
-        </form>
-        <ul>{filteredData}</ul>
-        <form action="">
-          <h2> Añadir nueva frase</h2>
-          Frase
-          <input
-            type="text"
-            id="quote"
-            onChange={handleNewQuote}
-            value={newQuote.quote}
-          />
-          Personaje
-          <input
-            type="text"
-            id="character"
-            onChange={handleNewQuote}
-            value={newQuote.character}
-          />
-          <button onClick={handleAddButton}>Añadir una nueva frase</button>
-        </form>
-      </main>
+      <div class="container">
+        <header>
+          <h1>
+            Frases de <span>Friends</span>
+          </h1>
+        </header>
+        <main>
+          <form action="" class="search-form">
+            <div class="search-filters">
+              <label for="quote-filter">Filtrar por frase</label>
+              <input
+                type="text"
+                id="quote-filter"
+                onChange={handleFilter}
+                value={searchFilter}
+              />
+
+              <label for="character-filter">Filtrar por personaje</label>
+              <select
+                id="character-filter"
+                onChange={handleSelect}
+                value={searchSelect}
+              >
+                <option value="all">Todos</option>
+                <option value="Ross">Ross</option>
+                <option value="Monica">Monica</option>
+                <option value="Joey">Joey</option>
+                <option value="Phoebe">Phoebe</option>
+                <option value="Chandler">Chandler</option>
+                <option value="Rachel">Rachel</option>
+              </select>
+            </div>
+          </form>{" "}
+          <form action="" class="new-quote-form">
+            <h2>Añadir nueva frase</h2>
+            <div class="form-group">
+              <label for="new-quote">Frase</label>
+              <input
+                type="text"
+                id="new-quote"
+                onChange={handleNewQuote}
+                value={newQuote.quote}
+              />
+            </div>
+            <div class="form-group">
+              <label for="new-character">Personaje</label>
+              <input
+                type="text"
+                id="new-character"
+                onChange={handleNewQuote}
+                value={newQuote.character}
+              />
+            </div>
+            <button class="add-button" onClick={handleAddButton}>
+              Añadir una nueva frase
+            </button>
+          </form>
+          <ul class="quote-list">{filteredData}</ul>
+        </main>
+      </div>
     </div>
   );
 }

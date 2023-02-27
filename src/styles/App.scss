@@ -1,3 +1,134 @@
-.App {
-  text-align: center;
+body {
+  background: #f1f1f1;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  color: #555;
+
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 20px;
+  background-image: url("https://wallpapercave.com/wp/wp2595476.jpg");
+  border-radius: 10px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  font-size: 40px;
+  margin-top: 10px;
+  margin-bottom: 25px;
+  color: #3b3b3b;
+  text-shadow: 1px 1px 0px #fff;
+}
+
+li h3 {
+  padding: 5px;
+  font-style: italic;
+}
+
+li span {
+  margin: 10px;
+}
+
+h1 span {
+  font-size: 45px;
+  color: #ed8fb0;
+  text-shadow: 1px 1px 0px #fff;
+  ;
+}
+
+.search-form {
+  margin-bottom: 30px;
+}
+
+.search-filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  align-items: left;
+}
+
+label {
+  font-size: 16px;
+  margin-right: 10px;
+  color: #333333;
+}
+
+input[type="text"],
+select {
+  text-align: left;
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+  background-color: #f1f1f1;
+  font-size: 14px;
+  color: #555;
+  transition: all 0.2s ease-in-out;
+}
+
+input[type="text"]:focus,
+select:focus {
+  display: block;
+  outline: none;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+}
+
+.new-quote-form {
+  margin-bottom: 50px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+  color: #363636;
+}
+
+input[type="text"] {
+  display: block;
+  width: 75%;
+  margin: 10px;
+}
+
+.add-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #f8a5c2;
+  color: #fff;
+  font-size: 16px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease-in-out;
+}
+
+.add-button:hover {
+  background-color: #ae4584;
+  cursor: pointer;
+}
+
+.quote-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  width: fit-content;
+  max-width: 80%;
+  background-color: #b6d4fe;
+  border-radius: 5px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+li:hover {
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
 }
