@@ -1,7 +1,5 @@
 import "../styles/App.scss";
-
 import { useState, useEffect } from "react";
-
 import callToApi from "../services/api";
 
 function App() {
@@ -12,6 +10,7 @@ function App() {
     quote: "",
     character: "",
   });
+  const [newQuoteList, setNewQuoteList] = useState([]);
 
   useEffect(() => {
     callToApi().then((response) => {
@@ -46,34 +45,31 @@ function App() {
     setSearchSelect(ev.target.value);
   };
 
-  //////////////////////////////
   const handleNewQuote = (ev) => {
     setNewQuote({
       ...newQuote,
-      [ev.target.id]: ev.target.value,
+      [ev.target.name]: ev.target.value,
     });
   };
+
   const handleClickAdd = (ev) => {
     ev.preventDefault();
-    setData([...data, newQuote]);
-    setNewQuote({
-      quote: "",
-      character: "",
-    });
+    setNewQuote({ quote: "", character: "" });
+    setNewQuoteList([...newQuoteList, newQuote]);
   };
-  /////////////////////////////////
+
   return (
     <div className="App">
-      <div class="container">
+      <div className="container">
         <header>
           <h1>
             Frases de <span>Friends</span>
           </h1>
         </header>
         <main>
-          <form action="" class="search-form">
-            <div class="search-filters">
-              <label for="quote-filter">Filtrar por frase</label>
+          <form action="" className="search-form">
+            <div className="search-filters">
+              <label htmlFor="quote-filter">Filtrar por frase</label>
               <input
                 type="text"
                 id="quote-filter"
@@ -81,7 +77,7 @@ function App() {
                 value={searchFilter}
               />
 
-              <label for="character-filter">Filtrar por personaje</label>
+              <label htmlFor="character-filter">Filtrar por personaje</label>
               <select
                 id="character-filter"
                 onChange={handleSelect}
@@ -96,34 +92,41 @@ function App() {
                 <option value="Rachel">Rachel</option>
               </select>
             </div>
-          </form>{" "}
-          <form action="" class="new-quote-form">
+          </form>
+          <form className="new-quote-form">
             <h2>Añadir nueva frase</h2>
-            <div class="form-group">
-              <label for="new-quote">Frase</label>
+            <div className="form-group">
+              <label htmlFor="new-quote">Frase</label>
               <input
                 type="text"
                 id="new-quote"
-                name="new-quote"
+                name="quote"
                 onChange={handleNewQuote}
                 value={newQuote.quote}
               />
             </div>
-            <div class="form-group">
-              <label for="new-character">Personaje</label>
+            <div className="form-group">
+              <label htmlFor="new-character">Personaje</label>
               <input
                 type="text"
-                name="new-character"
+                name="character"
                 id="new-character"
                 onChange={handleNewQuote}
-                value={newQuote.character}
               />
             </div>
-            <button class="add-button" onClick={handleClickAdd}>
+            <button className="add-button" onClick={handleClickAdd}>
               Añadir una nueva frase
             </button>
           </form>
-          <ul class="quote-list">{filteredData}</ul>
+          <ul className="quote-list">
+            {newQuoteList.map((item, id) => (
+              <li key={id}>
+                <h3>{item.quote}</h3>
+                <span>{item.character}</span>
+              </li>
+            ))}
+          </ul>
+          <ul className="quote-list">{filteredData}</ul>
         </main>
       </div>
     </div>

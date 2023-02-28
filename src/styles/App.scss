@@ -10,7 +10,7 @@ body {
   max-width: 960px;
   margin: 0 auto;
   padding: 20px;
-  background-image: url("https://wallpapercave.com/wp/wp2595476.jpg");
+  background-image: url("https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/gettyimages-143479799-1516292744.jpg?crop=1.00xw:0.546xh;0,0.0846xh&re");
   border-radius: 10px;
   background-repeat: no-repeat;
   background-size: contain;
@@ -50,6 +50,7 @@ h1 span {
   flex-wrap: wrap;
   justify-content: left;
   align-items: left;
+  max-width: 80vh;
 }
 
 label {
@@ -69,6 +70,7 @@ select {
   font-size: 14px;
   color: #555;
   transition: all 0.2s ease-in-out;
+  max-width: 80vh;
 }
 
 input[type="text"]:focus,
@@ -77,6 +79,7 @@ select:focus {
   outline: none;
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
   background-color: #fff;
+  max-width: 80vh;
 }
 
 .new-quote-form {
@@ -131,4 +134,60 @@ li {
 
 li:hover {
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos para pantallas de 768px o menos */
+@media only screen and (max-width: 768px) {
+  .container {
+    max-width: 100%;
+    padding: 10px;
+    background-size: 100%;
+  }
+
+  li span {
+    margin: 5px;
+  }
+
+  input[type="text"] {
+    max-width: 100%;
+  }
+
+  li {
+    width: 100%;
+  }
+}
+
+/* Estilos para pantallas de 992px o menos */
+@media only screen and (max-width: 992px) {
+  .search-filters {
+    max-width: 100%;
+  }
+}
+
+/* Estilos para pantallas de 1200px o menos */
+@media only screen and (max-width: 1200px) {
+  .container {
+    max-width: 50%;
+  }
+
+  .search-filters {
+    max-width: 100%;
+    flex-direction: column;
+  }
+
+  label {
+    margin-bottom: 5px;
+  }
+
+  input[type="text"] {
+    max-width: 100%;
+    margin: 5px 0;
+  }
+}
+
+/* Para pantallas pequeñas y medianas */
+@media only screen and (max-width: 767px) {
+  .container {
+    background-size: contain;
+  }
 }
